@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap');
+body{
+    margin:0;
+}
+
+.heading{
+    margin:0;
+    color: #fad744;
+    font-family: 'Caveat Brush', cursive;
+    font-size: 80px;
+    text-align: center;
+    text-shadow: 2px 5px #2b3252;
+    padding: 10px;
+}
+
+#main-container{
+    background-color:#54c3ef;
+    width:100%;
+    min-height:100vh;
+    margin:0;
+    padding-bottom: 16px;
+}
+
+#quiz-container{
+    width:50%;
+    border-radius: 10px;
+    background-color: #2B3252;
+    margin:24px auto;
+    padding: 16px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.question-container{
+    color:#fad744;
+}
+
+.answer-option label{
+    font-weight: 400;
+    margin-left: 8px;
+}
+
+.answer-option{
+    margin-bottom: 8px;
+    margin-left: 32px;
+}
+
+.question-border{
+    width:100%;
+    border-bottom: 1px solid #fad744;
+    margin-top: 30px;
+}
+
+.form-submit{
+    width:80px;
+    background-color: #fad744;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    padding: 6px 10px;
+    border-radius: 3px;
+    margin-top: 16px;
+    cursor: pointer;
+}
+
+.submit-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.tickMark{
+    color: green;
+    padding-left: 10px;
+}
+
+.crossMark{
+    color: red;
+    padding-left: 10px;
+}

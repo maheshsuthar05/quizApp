@@ -54,19 +54,19 @@ function quizQuestion(quizData) {
     quizForm.append(submitContainer);
 
     formSubmit.click(function (e) {
-        var userAnswer = [];
-        for (var k = 0; k < quizData.length; k++) {
-            var answer = document.getElementsByName(k);
-            for (var l = 0; l < quizOptions.length; l++) {
-                if (answer[l].checked === true) {
-                    userAnswer.push(l + 1);
-                }
-            }
-        }
+        // for (var k = 0; k < quizData.length; k++) {
+        //     var answer = document.getElementsByName(k);
+        //     for (var l = 0; l < quizOptions.length; l++) {
+        //         if (answer[l].checked === true) {
+        //             userAnswer.push(l + 1);
+        //         }
+        //     }
+        // }
         //checkResults(userAnswer);
         e.preventDefault();
+        
+        var userAnswer = $('input[type=radio]:checked');
 
-        console.log(userAnswer.length)
         if(userAnswer.length !== 5){
             alert("Please answer all questions")
         }
@@ -78,6 +78,9 @@ function quizQuestion(quizData) {
 }
 
 function showResults(userAnswer){
+
+    var score = 0;
+
     $('.form-submit').attr('disabled','true')
     var ansContainer = $('.answer-container');
 
@@ -86,28 +89,20 @@ function showResults(userAnswer){
             var answerId = document.getElementsByClassName('a'+x);
                 for (var y = 0; y < ansOption.length; y++) {
                     if(ansOption[y].checked){
-                        var z=y+1;
-                        var ans=quizData[x].answer
-                        if(z === ans){
+                        if(userAnswer[x].value === quizData[x].options[quizData[x].answer - 1]){
                             var spanText = $('<i>').addClass('fas fa-check tickMark')
                             answerId[y].append(spanText[0]);
+                            score += 1
                         }else{
                             var spanText = $('<i>').addClass('fas fa-times crossMark')
                             answerId[y].append(spanText[0]);
                             var spanText = $('<i>').addClass('fas fa-check tickMark')
-                            answerId[ans-1].append(spanText[0]);
+                            answerId[quizData[x].answer - 1].append(spanText[0]);
                         }
                     }
             }
         }
 
-    var realAnswer = quizData;
-    var score = 0;
-    for (var i = 0; i < quizData.length; i++) {
-        if (quizData[i].answer === userAnswer[i]) {
-            score += 1;
-        }
-    }
     score = score+'/5'
     var scoreArea = $("<div>").css({"color":"white","margin-top":"16px"}).text('Your Score - '+score);
     $('.submit-container').append(scoreArea);
@@ -115,7 +110,7 @@ function showResults(userAnswer){
     var reloadBtn = $("<button>").addClass('form-submit').text('Restart');
     $('.submit-container').append(reloadBtn);
 
-    reloadBtn.addEventListener('click',function(){
+    reloadBtn.click(function(){
         location.reload()
     })
 }
